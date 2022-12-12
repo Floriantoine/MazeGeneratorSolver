@@ -5,17 +5,17 @@
 ** main for Dante solver
 */
 
-#include "param.h"
-#include "tools.h"
-#include "maze.h"
 #include "main.h"
 #include "enum.h"
-#include "toolbox.h"
+#include "maze.h"
+#include "param.h"
 #include "time.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "toolbox.h"
+#include "tools.h"
 #include <ncurses.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 int init(void)
 {

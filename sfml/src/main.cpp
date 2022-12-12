@@ -5,9 +5,9 @@
 ** main for Dante solver
 */
 
+#include "Maze.hpp"
 #include "sfmlClass.hpp"
 #include "toolbox.hpp"
-#include "Maze.hpp"
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Window.hpp>
@@ -30,12 +30,13 @@ void onScreen(sf::Vector2f entry, sf::Color color)
     window.draw(rectangle);
 }
 
-void print_caract(sf::Color color, sf::Vector2i lastPos, sf::Vector2i mapSize, sfmlClass *sfmInf)
+void print_caract(sf::Color color, sf::Vector2i lastPos, sf::Vector2i mapSize,
+    sfmlClass *sfmInf)
 {
     sf::Vector2f sizeRec(10, 10);
 
-    sfmInf->_vectorVector2f.push_back(sf::Vector2f(sizeRec.x * lastPos.x +
-            ((window.getSize().x - mapSize.x * 10) / 2),
+    sfmInf->_vectorVector2f.push_back(sf::Vector2f(
+        sizeRec.x * lastPos.x + ((window.getSize().x - mapSize.x * 10) / 2),
         sizeRec.y * lastPos.y + ((window.getSize().y - mapSize.y * 10) / 2)));
     sfmInf->_colorVector.push_back(color);
     rectangle.setSize(sizeRec);
@@ -60,8 +61,8 @@ void print_sfml(sf::Color color, int x, int y, sf::Vector2i mapSize)
     sf::Vector2f sizeRec(10, 10);
     rectangle.setFillColor(color);
     if (color == sf::Color::Magenta)
-        rectangle.setFillColor(sf::Color(50 + 200 / mapSize.y * y, 27, 250,
-            150 + 100 / mapSize.x * x));
+        rectangle.setFillColor(sf::Color(
+            50 + 200 / mapSize.y * y, 27, 250, 150 + 100 / mapSize.x * x));
     rectangle.setSize(sizeRec);
     rectangle.setPosition(
         sf::Vector2f(sizeRec.x * x + (window.getSize().x - mapSize.x * 10) / 2,
@@ -76,7 +77,8 @@ int main(int ac, char **argv)
 
     window.setFramerateLimit(200);
     while (window.isOpen()) {
-        Maze Maze({randy(4, window.getSize().x / 10, -1), randy(4, window.getSize().y / 10, -1)});
+        Maze Maze({randy(4, window.getSize().x / 10, -1),
+            randy(4, window.getSize().y / 10, -1)});
         while (window.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 window.close();

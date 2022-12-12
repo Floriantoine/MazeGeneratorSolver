@@ -7,6 +7,7 @@
 
 #ifndef MAIN_H
 #define MAIN_H
+#include "param.h"
 
 int generator(param_t *param);
 

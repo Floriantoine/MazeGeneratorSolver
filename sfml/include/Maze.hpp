@@ -5,16 +5,17 @@
 #include <vector>
 
 using Map = std::vector<std::string>;
-class Maze
-{
-private:
+class Maze {
+  private:
     sf::Vector2i _firstPos;
     sf::Vector2i _mapSize;
     Map _map;
     std::vector<sf::Vector2i> _posList;
     sf::Vector2i _nextPos;
-public:
-enum maze_elements {
+
+  public:
+    enum maze_elements
+    {
         TO_VISIT = '*',
         VISITED = 'v',
         WALL = 'X',
@@ -34,8 +35,14 @@ enum maze_elements {
     int check_new_pos(sf::Vector2i pos);
     int force_pos();
 
-    sf::Vector2i getMapSize() { return _mapSize; };
-    Map getMap() { return _map; };
+    sf::Vector2i getMapSize()
+    {
+        return _mapSize;
+    };
+    Map getMap()
+    {
+        return _map;
+    };
 
     int backtracking_solve(sf::Vector2i pos, int i);
     int solver();
