@@ -168,13 +168,13 @@ int Maze::backtracking_solve(sf::Vector2i pos, int i)
         std::cout << "cc" << std::endl;
         toClean = !toClean;
     }
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
-            window.close();
-        if (event.type == sf::Event::KeyPressed &&
-            event.KeyPressed == sf::Keyboard::Escape)
-            window.close();
-    }
+    // while (window.pollEvent(event)) {
+    //     if (event.type == sf::Event::Closed)
+    //         window.close();
+    //     if (event.type == sf::Event::KeyPressed &&
+    //         event.KeyPressed == sf::Keyboard::Escape)
+    //         window.close();
+    // }
 
     _map[pos.x][pos.y] = PATH;
     print_sfml(sf::Color::White, pos.x, pos.y, _mapSize);
