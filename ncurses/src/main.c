@@ -70,7 +70,7 @@ int check_param(int ac, char **argv, param_t *param)
 
     param->loop = 999;
     param->speed = 1000;
-    param->show_stats = 1;
+    param->show_stats = 0;
     param->panel_top = 0;
     param->step_mode = 0;
     param->step_run = 0;
@@ -87,6 +87,10 @@ int check_param(int ac, char **argv, param_t *param)
         }
         if (strcmp(argv[i], "--no-stats") == 0) {
             param->show_stats = 0;
+            continue;
+        }
+        if (strcmp(argv[i], "--stats") == 0 || strcmp(argv[i], "--show-stats") == 0) {
+            param->show_stats = 1;
             continue;
         }
         if (strcmp(argv[i], "--step") == 0) {
