@@ -1,8 +1,8 @@
 # MazeGeneratorSolver
-## Maze Generator and solver, in C/C++ (Display on Ncruses or SFML).
+## Maze Generator and Solver in C/C++ (displayed with ncurses or SFML).
 
-- Created as part of a project in the first year (in c), with a bonus, a visualization in ncurses.
-- Then in sfml (c ++) to train in cpp, in second year.
+- Developed as part of a first-year project at Epitech, originally in C with a bonus visualization using ncurses.
+- Later rewritten in C++ with SFML during the second year to improve C++ skills and add graphical visualization.
 
 ### Ncurses version
 - Source: `ncurses/`
@@ -14,3 +14,6 @@
 
 In collaboration with:
  - Simon Houliat (https://github.com/Cpasmopi) -> Creation of the Maze solver
+
+
+
