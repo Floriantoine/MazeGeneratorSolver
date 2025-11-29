@@ -4,6 +4,10 @@
 - Created as part of a project in the first year (in c), with a bonus, a visualization in ncurses.
 - Then in sfml (c ++) to train in cpp, in second year.
 
+### Ncurses version
+- Source: `ncurses/`
+- Documentation: see `ncurses/README.md` for build/run instructions and the list of ncurses features (step mode, state panel, history/rewind, etc.).
+
 **Mandatory:**  
 - [ ] SFML
 - [ ] NCURSES
