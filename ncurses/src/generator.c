@@ -26,6 +26,8 @@ int init_all(info_pos_t *info, param_t *param)
     list->x = 0;
     list->y = 0;
     param->last_pos = list;
+    param->stack_depth = 1;
+    param->stats.depth_max = 1;
     return (0);
 }
 
@@ -67,12 +69,19 @@ int body(param_t *param, info_pos_t *info, int go)
             list->y = info->new_y;
             list->prev = param->last_pos;
             param->last_pos = list;
+            ++param->stack_depth;
+            if (param->stack_depth > param->stats.depth_max)
+                param->stats.depth_max = param->stack_depth;
+            ++param->stats.gen_steps;
             print_caract(RED_C, param);
             param->map[info->new_x][info->new_y] = '*';
         } else if (check_all(param, info)) {
             pos_list_t *tempo = param->last_pos;
             param->last_pos = param->last_pos->prev;
             free(tempo);
+            ++param->stats.gen_backtracks;
+            if (param->stack_depth > 1)
+                --param->stack_depth;
             print_caract(GREEN_C, param);
             info->new_x = param->last_pos->x;
             info->new_y = param->last_pos->y;
@@ -81,8 +90,10 @@ int body(param_t *param, info_pos_t *info, int go)
             info->new_y = param->last_pos->y;
         }
         take_new_pos(info, param);
+        print_state(param);
     }
     unperfect(param);
+    print_state(param);
     return (0);
 }
 

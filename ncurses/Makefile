@@ -11,6 +11,8 @@ SRC			=	src/main.c	   		   \
 				src/toolbox/print_map.c\
 				src/toolbox/my_pustr.c \
 				src/toolbox/randy.c    \
+				src/toolbox/history.c  \
+				src/toolbox/state_panel.c\
 				src/take_pos/take_pos.c\
 				src/solve.c\
 				src/tools.c\

@@ -16,29 +16,47 @@
 
 static int backtracking_solve(maze_t *maze, int x, int y, int i, param_t *param)
 {
+    if (param->solve_stack
+        && param->solve_stack_size < param->size_x * param->size_y) {
+        param->solve_stack[param->solve_stack_size].x = x;
+        param->solve_stack[param->solve_stack_size].y = y;
+        ++param->solve_stack_size;
+    }
     maze->maze[y][x] = PATH;
-    print_ncurses(PATH, WHITE_C, y, x, param);
+    ++param->stats.solve_steps;
+    record_draw(param, y, x, PATH, WHITE_C);
+    print_state(param);
+    wait_step(param);
     if (x == maze->width - 1 && y == maze->height - 1)
-        return (0);
+        goto success;
     if (x + 1 < maze->width && maze->maze[y][x + 1] == TO_VISIT) {
         if (backtracking_solve(maze, x + 1, y, i + 1, param) == 0)
-            return (0);
+            goto success;
     }
     if (y + 1 < maze->height && maze->maze[y + 1][x] == TO_VISIT) {
         if (backtracking_solve(maze, x, y + 1, i + 1, param) == 0)
-            return (0);
+            goto success;
     }
     if (x - 1 >= 0 && maze->maze[y][x - 1] == TO_VISIT) {
         if (backtracking_solve(maze, x - 1, y, i + 1, param) == 0)
-            return (0);
+            goto success;
     }
     if (y - 1 >= 0 && maze->maze[y - 1][x] == TO_VISIT) {
         if (backtracking_solve(maze, x, y - 1, i + 1, param) == 0)
-            return (0);
+            goto success;
     }
     maze->maze[y][x] = VISITED;
-    print_ncurses(VISITED, 6, y, x, param);
+    ++param->stats.solve_backtracks;
+    record_draw(param, y, x, VISITED, 6);
+    print_state(param);
+    wait_step(param);
+    if (param->solve_stack_size > 0)
+        --param->solve_stack_size;
     return (1);
+success:
+    if (param->solve_stack_size > 0)
+        --param->solve_stack_size;
+    return (0);
 }
 
 static void clean_visited(maze_t *maze, param_t *param)
